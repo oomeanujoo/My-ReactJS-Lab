@@ -1,0 +1,177 @@
+app-sidenav {
+  position: fixed;
+  left: 0rem;
+  min-width: 250px;
+  width: 250px;
+  height: 100vh;
+  overflow-x: hidden;
+  transition: all 0.4s;
+  white-space: nowrap;
+  /* background-color: rgb(255, 255, 255, 0.3) !important; */
+  /* border-right: #eee 1px solid; */
+  /* top: calc(100% - 56px); */
+  /* background-image: url("../../assets/images/power-lines-6586702_1280.jpg") !important; */
+  /* background-blend-mode: screen; */
+  /* background-size: cover; */
+}
+
+/* app-sidenav-c::after {
+  content: "";
+  background-image: url("../../assets/images/New.jpg") !important;
+  background-size: cover;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: -40px;
+  opacity: 0.1;
+  pointer-events: none;
+  filter: blur(2px);
+  transition: all 0.4s;
+  z-index: -1;
+} */
+
+/* .app-sidenav-c-open::after {
+  content: "";
+  background-image: url("../../assets/images/New.jpg") !important;
+  background-size: cover;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: -40px;
+  opacity: 0.1;
+  pointer-events: none;
+  filter: blur(1px);
+  transition: all 0.4s;
+  z-index: -1;
+} */
+
+.app-sidenav-open {
+  position: fixed;
+  left: 0rem;
+  min-width: 70px;
+  width: 70px;
+  height: 100vh;
+  overflow-x: hidden;
+  transition: all 0.4s;
+  white-space: nowrap;
+  /* border-right: #eee 1px solid; */
+}
+
+.page-content {
+  width: calc(100% - 250px);
+  margin-left: 250px;
+  transition: all 0.4s;
+  /* max-width: calc(100% - 17rem); */
+  margin-right: 0; /* Adjust margin-right for the closed state */
+  height: 100%;
+  
+}
+
+.nav-content {
+  position: sticky;
+  top: 0; /* Keep navbar at the top */
+  width: calc(100% - 250px);
+  margin-left: 250px;
+  z-index: 1000; /* Ensure the navbar stays above the content */
+  transition: all 0.4s;
+}
+
+.nav-content-open {
+  width: calc(100% - 70px);
+  margin-left: 70px;
+  transition: all 0.4s;
+  /* max-width: calc(100% - 17rem); */
+  margin-right: 0; /* Adjust margin-right for the closed state */
+}
+
+.page-content-open {
+  width: calc(100% - 70px);
+  margin-left: 70px;
+  margin-right: 0; /* Add margin-right for the open state */
+  transition: all 0.4s;
+  /* max-width: calc(100% - 90px); */
+  height: 100%;
+  
+}
+
+/* @media (max-width: 768px) {
+    app-sidenav-c {
+      position: fixed;
+      left: 0rem;
+      min-width: 90px;
+      width: 90px;
+      height: 100vh;
+      overflow-x: hidden;
+      transition: all 0.4s;
+      white-space: nowrap;
+      background: white;
+      border-right: #eee 1px solid;
+    }
+
+    .page-content {
+      width: calc(100% - 90px);
+      margin-left: 90px;
+      transition: all 0.4s;
+    }
+
+    .app-sidenav-c-open {
+      position: fixed;
+      left: 0rem;
+      min-width: 17rem;
+      width: 17rem;
+      height: 100vh;
+      overflow-x: hidden;
+      transition: all 0.4s;
+      white-space: nowrap;
+      background: white;
+      border-right: #eee 1px solid;
+    }
+
+    .page-content-open {
+      width: calc(100% - 17rem);
+      margin-left: 17rem;
+      transition: all 0.4s;
+    }
+  } */
+
+/* @media (min-width: 768px) {
+    app-sidenav-c {
+      position: fixed;
+      left: 0rem;
+      min-width: 17rem;
+      width: 17rem;
+      height: 100vh;
+      overflow-x: hidden;
+      transition: all 0.4s;
+      white-space: nowrap;
+      background: white;
+      border-right: #eee 1px solid;
+    }
+
+    .page-content {
+      width: calc(100% - 90px);
+      margin-left: 90px;
+      transition: all 0.4s;
+    }
+
+    .app-sidenav-c-open {
+      position: fixed;
+      left: 0rem;
+      min-width: 90px;
+      width: 90px;
+      height: 100vh;
+      overflow-x: hidden;
+      transition: all 0.4s;
+      white-space: nowrap;
+      background: white;
+      border-right: #eee 1px solid;
+    }
+
+    .page-content-open {
+      width: calc(100% - 90px);
+      margin-left: 90px;
+      transition: all 0.4s;
+    }
+  } */
