@@ -8,7 +8,11 @@ const SideNav = ({ isOpen }) => {
     { label: "Users", path: "/users" },
     { label: "Analytics", path: "/analytics" },
     { label: "Settings", path: "/settings" },
-    { label: "Form", path: "/income" },
+    { label: "Income", path: "/income" },
+    { label: "Assets", path: "/assets" },
+    { label: "Fixed Deposits", path: "/assets/fd" },
+    { label: "Mutual Funds", path: "/assets/mf" },
+    { label: "Reports", path: "/assets/reports" },
   ];
 
   return (
