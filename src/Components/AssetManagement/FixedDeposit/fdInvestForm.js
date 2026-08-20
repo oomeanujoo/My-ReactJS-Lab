@@ -9,20 +9,37 @@ import { useAuth } from "../../Auth/authContext";
 const FdInvestForm = () => {
   // useParams reads the ":id" part of the URL (e.g. /assets/fd/invest/fd-hdfc-1)
   const { id } = useParams();
-  const { buyFd } = useFd();
+  const { buyFd, draftInvestments, updateDraftInvestment } = useFd();
   const { canTransact } = useAuth();
 
   const scheme = fdSchemes.find((fd) => fd.id === id);
 
-  const [amount, setAmount] = useState(scheme ? scheme.minAmount : 0);
-  const [tenureMonths, setTenureMonths] = useState(
-    scheme ? scheme.minTenureMonths : 12
-  );
-  const [payoutOption, setPayoutOption] = useState(
-    scheme ? scheme.payoutOptions[0] : ""
-  );
-  const [nomineeName, setNomineeName] = useState("");
+  // Concept: lifting state up (see LEARNING_NOTES.md and fdContext.js).
+  // These values are NOT local useState — they live in FdContext instead,
+  // which is why leaving this page (e.g. "Back to FD list") and coming
+  // back to invest in the SAME scheme shows whatever you'd already typed,
+  // instead of resetting to blank. `draft` falls back to the scheme's
+  // defaults only the very first time this scheme's form is opened.
+  const draft = scheme ? draftInvestments[scheme.id] : undefined;
+  const amount = draft?.amount ?? (scheme ? scheme.minAmount : 0);
+  const tenureMonths = draft?.tenureMonths ?? (scheme ? scheme.minTenureMonths : 12);
+  const payoutOption = draft?.payoutOption ?? (scheme ? scheme.payoutOptions[0] : "");
+  const nomineeName = draft?.nomineeName ?? "";
+
   const [submitted, setSubmitted] = useState(null);
+
+  function setAmount(value) {
+    updateDraftInvestment(scheme.id, { amount: value });
+  }
+  function setTenureMonths(value) {
+    updateDraftInvestment(scheme.id, { tenureMonths: value });
+  }
+  function setPayoutOption(value) {
+    updateDraftInvestment(scheme.id, { payoutOption: value });
+  }
+  function setNomineeName(value) {
+    updateDraftInvestment(scheme.id, { nomineeName: value });
+  }
 
   // useMemo = "only recalculate this when its dependencies change."
   // Without it, this same math would still run on every render (cheap here,

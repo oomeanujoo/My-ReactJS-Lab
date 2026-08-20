@@ -27,6 +27,22 @@ export function FdProvider({ children }) {
   // localStorage on first render and write back on every change (below).
   const [myFds, setMyFds] = useState(() => loadFromStorage(STORAGE_KEY, []));
 
+  // Concept: lifting state up so it survives a component unmounting (see
+  // LEARNING_NOTES.md). FdInvestForm's own useState would reset every time
+  // you navigate away and back, because the form component itself gets
+  // destroyed and recreated. FdProvider, on the other hand, stays mounted
+  // for as long as you're anywhere under /assets/fd/* — so keeping the
+  // in-progress form values HERE instead means they survive the trip.
+  // Keyed by scheme id, since a different scheme's form should start fresh.
+  const [draftInvestments, setDraftInvestments] = useState({});
+
+  function updateDraftInvestment(schemeId, values) {
+    setDraftInvestments((prev) => ({
+      ...prev,
+      [schemeId]: { ...prev[schemeId], ...values },
+    }));
+  }
+
   // useEffect = "after React updates the screen, also run this side effect."
   // Here: whenever myFds changes, mirror it into localStorage.
   useEffect(() => {
@@ -49,6 +65,15 @@ export function FdProvider({ children }) {
       status: "Active",
     };
     setMyFds((prev) => [...prev, newFd]);
+
+    // Purchase is done — clear this scheme's draft so a future visit to
+    // this same form starts fresh instead of showing the old submitted values.
+    setDraftInvestments((prev) => {
+      const next = { ...prev };
+      delete next[purchase.schemeId];
+      return next;
+    });
+
     return newFd;
   }
 
@@ -64,7 +89,15 @@ export function FdProvider({ children }) {
     );
   }
 
-  const value = { compareIds, toggleCompare, myFds, buyFd, revokeFd };
+  const value = {
+    compareIds,
+    toggleCompare,
+    myFds,
+    buyFd,
+    revokeFd,
+    draftInvestments,
+    updateDraftInvestment,
+  };
 
   return <FdContext.Provider value={value}>{children}</FdContext.Provider>;
 }
