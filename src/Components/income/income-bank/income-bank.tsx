@@ -1,7 +1,7 @@
 // src/Components/income/income-bank/incomeBank.tsx
 import React, { ChangeEvent, FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
-import { useIncome } from "../incomeContext.tsx"; // use the context
+import { useIncome } from "../incomeContext"; // use the context
 
 const IncomeBank: React.FC = () => {
   const navigate = useNavigate();

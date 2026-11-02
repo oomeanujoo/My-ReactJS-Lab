@@ -1,7 +1,7 @@
 // src/Components/income/income-form/incomeForm.tsx
 import React, { ChangeEvent, FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
-import { useIncome } from "../incomeContext.tsx"; // import context
+import { useIncome } from "../incomeContext"; // import context
 
 const IncomeForm: React.FC = () => {
   const { formData, setFormData } = useIncome(); // use context
@@ -99,7 +99,7 @@ const IncomeForm: React.FC = () => {
       {/* Navigate to Bank Form */}
       <button
         type="button"
-        onClick={() => navigate("incomeBank")}
+        onClick={() => navigate("../incomeBank")}
         className="w-full py-2 bg-green-600 text-white rounded-md"
       >
         Add Bank Details
